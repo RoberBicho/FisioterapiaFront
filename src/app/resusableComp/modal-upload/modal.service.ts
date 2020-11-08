@@ -17,24 +17,18 @@ export class ModalService {
 
   tipo: string;
   id:string;
-
   oculto: string = 'oculto';
-
   ocultoCalendar: string = 'oculto'
-
   notificacion = new EventEmitter<any>();
-
   notificacionNewDate = new EventEmitter<any>();
-
   calendarDate;
-
   eventId;
-
   nombre;
   date;
   observaciones= '';
   zone = '';
   symptoms = '';
+  userId = '';
   
 
   constructor(public usuarioService: UsuarioService, public http: HttpClient) { 

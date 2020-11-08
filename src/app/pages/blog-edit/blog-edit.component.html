@@ -99,10 +99,8 @@
                 </div>
                 <!-- Podría hacer un ngFor con las categoría que haya en el back  -->
                 <select [(ngModel)]="post.categoria" name="categoria" class="custom-select" id="inputGroupSelect01">
-                  <option selected>Choose...</option>
-                  <option value="1">One</option>
-                  <option value="2">Two</option>
-                  <option value="3">Three</option>
+                  <option selected>Selecciona una categoría</option>
+                  <option *ngFor="let option of categorias">{{option.nombre}}</option>
                 </select>
             </div>
 

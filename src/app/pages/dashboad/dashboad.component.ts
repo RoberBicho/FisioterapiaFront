@@ -54,7 +54,7 @@ const colors: any = {
 export class DashboadComponent implements OnInit, OnDestroy {
 
 
-  
+
   constructor(public dialog: MatDialog,
                 public modalService:ModalService,
                 public usuarioService: UsuarioService,
@@ -62,6 +62,7 @@ export class DashboadComponent implements OnInit, OnDestroy {
     
     this.getDataEvents();
     this.userRole = this.usuarioService.usuario.role;
+    this.userId = this.usuarioService.usuario._id;
     }
 
   @ViewChild(CreateComponentDirective, {static:false}) createHost: CreateComponentDirective; 
@@ -70,6 +71,7 @@ export class DashboadComponent implements OnInit, OnDestroy {
 
   @ViewChild('modalContent', { static: true }) modalContent: TemplateRef<any>;
   userRole;
+  userId;
 
 // *************************************************************************************************
 //                             Propiedades de calendario
@@ -162,7 +164,7 @@ export class DashboadComponent implements OnInit, OnDestroy {
     // ];
   }
 
-  // *************************************************************************************************
+// *************************************************************************************************
 //        conseguir que se abra y se cierre el día con los eventos // disable-slide-animation
 // ***************************************************************************************************
 
@@ -182,10 +184,32 @@ dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
 };
 
 dateClickedF(data) {
-  this.modalService.date = data
-  this.modalService.mostrarModalCalendar(data);
-  this.clickedDate = data;
+
+  // Sólo se puede reservar cita con una antelación mínima de 24h
+  
+  let date = new Date();
+  let dataX = data;
+  let CurrentDate = date.setHours(date.getHours());
+  let dataMil = dataX.setHours(dataX.getHours());
+
+
+  if ( (dataMil - CurrentDate) > 86400000  ) {
+    console.log(data);
+    this.modalService.date = data
+    this.modalService.mostrarModalCalendar(data);
+    this.clickedDate = data;
+  }
+
+    
+
+    // this.modalService.date = data
+    // this.modalService.mostrarModalCalendar(data);
+    // this.clickedDate = data;
+
+
 }
+
+
 
 clickedColumnF(event) {
   this.clickedColumn = event
@@ -282,14 +306,14 @@ refresh: Subject<any> = new Subject();
                   id: value._id,
                   zone: value.zone,
                   symptoms: value.symptoms,
-                  nombre: value.nombre
+                  nombre: value.nombre,
+                  userid: value.userId
             },
           })
         }
           
     
          this.events = dataEvent;
-        //  console.log(dataEvent)
         });
   };
 

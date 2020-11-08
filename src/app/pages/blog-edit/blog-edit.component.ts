@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Post } from 'src/app/models/post.model';
 import { PostService } from 'src/app/services/post.service';
 
@@ -13,10 +12,20 @@ export class BlogEditComponent implements OnInit {
 
 
   post: Post = new Post('','','','','','');
+  categorias: [] = [];
 
   constructor(public postService: PostService) { }
 
   ngOnInit() {
+    this.postService.getCategoria().subscribe( (resp:any) => {
+      console.log(resp);
+      this.categorias = resp
+    //   this.categorias.unshift({
+    //     id: "none",
+    //     descripcion: "",
+    //     nombre: "Elige una categoría"
+    // })
+    })
   }
 
   submit() {

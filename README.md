@@ -1,7 +1,21 @@
 
-# AngularAvanzado
+# FisioterapiaAppFront
+
+Este es un proyecto personal en el cual el objetivo principal conseguir que el código ayude a la comunidad. 
+
+# Qué se puede hacer? 
+
+En eella se pueden reservar citas, ver los huecos disponibles, así como leer el blog que hay en ella
+
+Como administrador puedes gestionar las distintas clínicas, usuarios y citas. 
+
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.21.
+
+# Cual es el objetivo ? 
+
+Que sirva como base para una personalización de lo que cada profesional necesite
 
 ## Development server
 
