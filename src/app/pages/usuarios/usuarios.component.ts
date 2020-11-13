@@ -85,17 +85,17 @@ export class UsuariosComponent implements OnInit {
     };
 
     swal({
-      title: "Are you sure?",
-      text: "Once deleted, you will not be able to recover this imaginary file!",
+      title: "Estás segur@?",
+      text: "Una vez que lo elimine, no podrás recuperarlo!",
       icon: "warning",
-      buttons: true,
+      buttons: ["Oh no!", true],
       dangerMode: true,
     })
     .then((willDelete) => {
      
       if ( willDelete) {
         this.usuarioService.deleteUser(usuario._id).subscribe(resp=> {
-          swal('Usuario Borrado');
+          swal('Usuario Borrado', 'success');
           this.getUsers();
           
         })

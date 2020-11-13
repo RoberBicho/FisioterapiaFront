@@ -5,6 +5,7 @@ import { ModalService } from 'src/app/resusableComp/modal-upload/modal.service';
 import swal from 'sweetalert';
 import { URL_SERVICIOS } from '../../config/config';
 import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
 @Component({
@@ -15,19 +16,21 @@ import { Router } from '@angular/router';
 export class BlogEditComponent implements OnInit {
 
 
-  post: Post = new Post('','','','','','');
+  post: Post = new Post('','','','','','','');
   categorias: [] = [];
   uploadFile: File;
   imagenTemp: any;
   open: Boolean = true
 
-  constructor(public postService: PostService,  public modalService: ModalService, public route: Router) { }
+  constructor(public postService: PostService,  public modalService: ModalService, public route: Router, public usuarioService: UsuarioService) { }
 
   ngOnInit() {
     this.postService.getCategoria().subscribe( (resp:any) => {
-      console.log(resp);
+      // console.log(resp);
       this.categorias = resp
     })
+
+    this.post.idAuthor = this.usuarioService.usuario._id
 
 
   }
@@ -38,7 +41,7 @@ export class BlogEditComponent implements OnInit {
   //                                     Esto sería vanilla.js(js puro)                                                           
   //**************************************************************************************************
   
-
+    console.log(this.post);
     return new Promise((resolve,reject) => {
 
       let formData = new FormData();
@@ -49,6 +52,7 @@ export class BlogEditComponent implements OnInit {
       formData.append('comentarios', this.post.comentarios);
       formData.append('date', this.post.date);
       formData.append('imagen', this.post.img, this.post.img.name);
+      formData.append('idAuthor',this.post.idAuthor );
 
 
       let xhr = new XMLHttpRequest(); //inicializamos la petición ajax
@@ -62,10 +66,10 @@ export class BlogEditComponent implements OnInit {
         
         // esto es la configuracion de la petición ajax, de como va a funcionar
 
-        // console.log(xhr.readyState); // Me da los tipos de resultados de la petición, podría hacer los loader
+        console.log(xhr.readyState);
+        console.log(xhr.status); // Me da los tipos de resultados de la petición, podría hacer los loader
         if ( xhr.readyState === 4 ) { // el 4 es un estado de la subida, podría jugar con ellos para hacer un loading
-           if (xhr.status === 201 ) {
-              console.log(xhr.status);
+           if (xhr.status === 200 || xhr.status === 200  ) {
              swal('Post Subido Correctamente', 'success');
              resolve(JSON.parse(xhr.response));
            } else {

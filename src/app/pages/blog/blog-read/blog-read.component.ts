@@ -13,7 +13,7 @@ import swal from 'sweetalert';
 export class BlogReadComponent implements OnInit {
 
 
-  post: Post = new Post('','' , '', '', '','','','');
+  post: Post = new Post('','' , '', '', '','','',);
   role: string;
 
   constructor(public activatedRoute: ActivatedRoute, public postService: PostService, public route: Router, public userService: UsuarioService) {
