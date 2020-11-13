@@ -24,7 +24,7 @@ export class HospitalesComponent implements OnInit {
   ngOnInit() {
     this.modalService.notificacion.subscribe(() => this.getHospitales());
     this.role = this.userService.usuario.role
-    console.log(this.role);
+    // console.log(this.role);
   }
 
   getHospitales() {
@@ -50,7 +50,7 @@ export class HospitalesComponent implements OnInit {
 
     this.hospitalService.searchHospital(value).subscribe( (hospitales: any) => {
       this.hospitales = hospitales.tabla;
-      console.log(this.hospitales);
+      // console.log(this.hospitales);
     });
   }
 
@@ -75,6 +75,7 @@ export class HospitalesComponent implements OnInit {
   });
 
 }
+
 actualizarImagen(hospitalID) {
   this.modalService.mostrarModal('hospitales', hospitalID);
 }

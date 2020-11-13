@@ -35,7 +35,7 @@ export class MedicoComponent implements OnInit {
      }
 
   ngOnInit() {
-    this.hospitalService.getHospitals().subscribe(hospitales => {this.hospitales = hospitales, console.log(this.hospitales)});
+    this.hospitalService.getHospitals().subscribe(hospitales => {this.hospitales = hospitales});
 
     this.modalService.notificacion.subscribe( resp => {
       this.medico.img = resp.medico.img;

@@ -41,7 +41,7 @@ export class ModalDateComponent implements OnInit {
       form.value.userId
     );
 
-    console.log(date)
+    // console.log(date)
 
     this.modalService.searchDate(date)
     .subscribe(resp => {

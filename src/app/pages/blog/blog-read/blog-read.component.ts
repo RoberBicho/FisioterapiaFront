@@ -55,8 +55,8 @@ deletePost(_id:any) {
     if ( willDelete) {
       this.postService.deletePost(_id).subscribe( (deletedPost) => {
 
-        console.log(_id);
-        console.log(deletedPost);
+        // console.log(_id);
+        // console.log(deletedPost);
         this.route.navigate(['/blog']);
       })
     } 

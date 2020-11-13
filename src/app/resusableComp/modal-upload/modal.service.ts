@@ -41,7 +41,6 @@ export class ModalService {
        Authorization: this.usuarioService.token
     });  
     
-    console.log(formCita)
     return this.http.post('http://localhost:4000/date',formCita, {headers: headers})
     .pipe(map(
       (resp:any) => {
@@ -126,8 +125,11 @@ export class ModalService {
 
   mostrarModal( tipo:string, id: string ) {
     this.oculto = '';
+
+    if ( tipo && id != '') {
     this.id = id ;
     this.tipo = tipo;
+    }
   }
 
   mostrarModalCalendar(data) {

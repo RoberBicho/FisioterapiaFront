@@ -28,12 +28,12 @@
 
 
         <form #f="ngForm" (ngSubmit)="submit()">
-            <ng-template matStepLabel>Autor/Referencias de la entrar</ng-template>
+            <ng-template matStepLabel>Autor/Referencias de la entrada</ng-template>
             <!-- <mat-form-field>
                 <input matInput placeholder="Last name, First name" formControlName="firstCtrl" required>
             </mat-form-field> -->
             <div class="form-group">
-                <label for="exampleFormControlInput1">Título principal del post</label>
+                <label for="exampleFormControlInput1">Autor/Referencias</label>
                 <input [(ngModel)]="post.autor" name="autor" #autor="ngModel" type="text" [ngClass]="{'is-valid': title.valid, 'is-invalid': title.invalid}" required class="form-control" id="exampleFormControlInput1">
                 <div class="alert alert-danger" *ngIf="autor.invalid && (autor.dirty || autor.touched)">
                     <div *ngIf="autor.errors.required">
@@ -150,6 +150,56 @@
             </div>
             <!--  End Editor HTML5 -->
 
+
+            <div>
+                <button type="button" class="btn btn-primary" matStepperPrevious>Back</button>
+                <button type="button" class="btn btn-primary" matStepperNext>Next</button>
+            </div>
+        </form>
+    </mat-step>
+
+    <!-- Step 3 -->
+    <mat-step>
+
+        <form #f="ngForm">
+            <ng-template matStepLabel>Imagen</ng-template>
+
+            <!-- Modal -->
+            <div id="modalImg" class="fondo-negro animated fadeIn" *ngIf="this.open">
+                <div class="modal" style="display: block;" tabindex="-1" role="dialog">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Subir Imagen</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                              <!-- le estoy asignando al string hiden la palabra oculto, que sería la clase en el css -->
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                            </div>
+                            <div class="modal-body text-center">
+
+
+
+                                <img *ngIf="!imagenTemp" [src]="'xxx' | imagen" class="w-150">
+                                <img *ngIf="imagenTemp" [src]="imagenTemp" class="w150">
+
+                                <input (change)="selectImage($event.target.files[0])" type="file">
+
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button (click)="closeSelectImg()" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button (click)="saveImg()" type="button" class="btn btn-secondary" data-dismiss="modal">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button (click)="subirImg()" type="button" class="btn btn-primary" matStepperPrevious>Subir Imagen</button>
+            <hr>
 
             <div>
                 <button type="button" class="btn btn-primary" matStepperPrevious>Back</button>

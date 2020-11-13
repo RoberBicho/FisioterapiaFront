@@ -57,7 +57,7 @@ export class LoginComponent implements OnInit {
         // this.router.navigate(['/dashboard']);
         window.location.href = '#/dashboard' // hago esto por que da un fallo de visualización con la linea 57
       })
-      console.log(token);
+      // console.log(token);
     })
   }
 
@@ -65,7 +65,7 @@ export class LoginComponent implements OnInit {
     let usuario: Usuario = new Usuario(null, form.value.email, form.value.password);
 
     this.usuarioService.login(usuario, form.value.rememberme).subscribe(response => {
-      console.log(response);
+      // console.log(response);
       this.router.navigate(['/dashboard'])
     })
   }

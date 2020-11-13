@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import swal from 'sweetalert';
 import { UploadFileService } from '../../services/upload-file.service';
 import { ModalService } from './modal.service';
@@ -12,6 +12,9 @@ export class ModalUploadComponent implements OnInit {
   uploadFile: File;
 
   imagenTemp: any;
+
+  EmiterImgTemp = new EventEmitter<any>();
+
   constructor(public uploadService: UploadFileService,public modalService:ModalService) { }
 
   ngOnInit() {
@@ -19,7 +22,7 @@ export class ModalUploadComponent implements OnInit {
 
   selectImage(file: File) {
 
-    console.log(file);
+    //console.log(file);
 
     if( !file ) {
       this.uploadFile = null;
@@ -31,6 +34,7 @@ export class ModalUploadComponent implements OnInit {
     }
 
     this.uploadFile = file;
+    // console.log(this.uploadFile);
 
 
     let reader = new FileReader(); //esto es javascript puro
@@ -38,6 +42,7 @@ export class ModalUploadComponent implements OnInit {
 
     reader.onloadend = () => {
       this.imagenTemp = reader.result;
+      this.EmiterImgTemp.emit(this.imagenTemp)
     }
 
   }
@@ -51,6 +56,8 @@ export class ModalUploadComponent implements OnInit {
   }
 
   subirImagen() {
+
+    // Emitir si es post lo de selected image y después que la función de upload lo haga desde blog-edit
 
     this.uploadService.uploadFile(this.uploadFile, this.modalService.tipo, this.modalService.id)
       .then(resp => {

@@ -3,6 +3,7 @@ import { Post } from 'src/app/models/post.model';
 import { PostService } from 'src/app/services/post.service';
 import { ModalService } from 'src/app/resusableComp/modal-upload/modal.service';
 import swal from 'sweetalert';
+import { getWeekYearWithOptions } from 'date-fns/fp';
 
 @Component({
   selector: 'app-blog',
@@ -14,15 +15,18 @@ export class BlogComponent implements OnInit {
   posts: Post[] = [];
   sincePost = 0;
   totalPosts: number = 0;
+  categorias: [] = [];
 
   
 
   constructor(public postService: PostService, public modalService: ModalService) {
     this.getPosts();
+    // console.log(this.posts);
    }
 
   ngOnInit() {
     this.modalService.notificacion.subscribe(() => this.getPosts());
+    this.postService.getCategoria().subscribe( (resp:any) => this.categorias = resp  )
   }
 
   getPosts() {
@@ -34,12 +38,12 @@ export class BlogComponent implements OnInit {
       this.totalPosts = this.postService.totalPosts;
       this.posts = data;
       //this.loading = false;
-      console.log(data);
+      // console.log(data);
     });
   };
 
   searchPost(value: string) {
-    console.log(value);
+    // console.log(value);
 
 
     if ( value.length <= 0  ) {
@@ -70,6 +74,19 @@ export class BlogComponent implements OnInit {
     this.getPosts();
   };
 
-  //Crear hospital metodo iría aquí
+  postByCategoria(categoria) {
+  //   for (let post of this.posts) {
+  //   console.log (post.categoria);
+  //   console.log(categoria);
+
+  //   if ( post.categoria === categoria) {
+  //     this.posts.unshift(post)
+  //     return
+  //   }
+
+    
+  // }
+  }
+
 
 }

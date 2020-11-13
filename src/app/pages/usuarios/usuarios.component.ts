@@ -42,7 +42,7 @@ export class UsuariosComponent implements OnInit {
       this.totalRegisters = data.total;
       this.usuarios = data.usuarios;
       this.loading = false;
-      console.log(data);
+      // console.log(data);
     });
   };
 
@@ -88,14 +88,14 @@ export class UsuariosComponent implements OnInit {
       title: "Are you sure?",
       text: "Once deleted, you will not be able to recover this imaginary file!",
       icon: "warning",
-      buttons: [true],
+      buttons: true,
       dangerMode: true,
     })
     .then((willDelete) => {
      
       if ( willDelete) {
         this.usuarioService.deleteUser(usuario._id).subscribe(resp=> {
-          swal('Usuaro Borrado');
+          swal('Usuario Borrado');
           this.getUsers();
           
         })

@@ -37,7 +37,7 @@ export class SearchingComponent implements OnInit {
 
     this.http.get(url).subscribe(
       (resp: any) => {
-        console.log(resp);
+        // console.log(resp);
         this.hospitales = resp.hospitales;
         this.usuarios = resp.usuarios;
         this.medicos = resp.medicos

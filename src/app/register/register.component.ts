@@ -63,7 +63,7 @@ form: FormGroup;
 
     this.usuarioService.postUser(usuario).subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
         this.router.navigate( ['/login'] )
       });
 

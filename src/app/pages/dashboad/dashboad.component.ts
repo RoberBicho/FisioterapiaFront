@@ -194,7 +194,7 @@ dateClickedF(data) {
 
 
   if ( (dataMil - CurrentDate) > 86400000  ) {
-    console.log(data);
+    // console.log(data);
     this.modalService.date = data
     this.modalService.mostrarModalCalendar(data);
     this.clickedDate = data;
@@ -220,7 +220,7 @@ clickedColumnF(event) {
 // ***************************************************************************************************
 
 eventClicked({ event }: { event: CalendarEvent }): void {
-  console.log('Event clicked', event); // si clicko en el evento me da la info
+  // console.log('Event clicked', event); // si clicko en el evento me da la info
 }
 
 handleEvent(action: string, event: CalendarEvent): void {
@@ -320,7 +320,7 @@ refresh: Subject<any> = new Subject();
   
   deleteDate(date) {
    
-    console.log(date.id)
+    // console.log(date.id)
     swal({
       title: "Está seguro?",
       text: "Una vez borrada tendrá que volver a solicitarla!",
@@ -358,7 +358,7 @@ refresh: Subject<any> = new Subject();
   componentRef.instance.data = data // le paso la data que yo quiero al componente
 
   this.closeSub = componentRef.instance.close.subscribe( (data) => {
-    console.log ('Data que emite el create component' , data)
+    // console.log ('Data que emite el create component' , data)
     this.closeSub.unsubscribe();
     hostViewContainerRef.clear();
   });

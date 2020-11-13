@@ -2,12 +2,12 @@ export class Post {
 
     constructor (
         public title: string,
-        public intro: String,
-        public contenido: String,
-        public categoria: String,
-        public comentarios: String,
-        public date?: String,
-        public img?: string,
+        public intro: string,
+        public contenido: string,
+        public categoria: string,
+        public comentarios: string,
+        public date?: string,
+        public img?: File,
         public _id?: string,
         public autor?: string
     ) { }

@@ -32,7 +32,7 @@ export class ProfileComponent implements OnInit {
     this.usuario.email = usuario.email;
     }
     this.usuarioService.updateUser(this.usuario).subscribe(resp => {
-      console.log(resp);
+      // console.log(resp);
     })
 
   };
@@ -40,7 +40,7 @@ export class ProfileComponent implements OnInit {
 
   selectImage(file: File) {
 
-    console.log(file);
+    // console.log(file);
 
     if( !file ) {
       this.uploadFile = null;
