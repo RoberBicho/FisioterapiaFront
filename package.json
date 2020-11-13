@@ -1,6 +1,10 @@
 {
-    "name": "angular-avanzado",
-    "version": "0.0.0",
+    "name": "angular-fisioterapia",
+    "description": "a really cool app",
+    "version": "1.0.0",
+    "engines": {
+        "node": "12.x"
+    },
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
